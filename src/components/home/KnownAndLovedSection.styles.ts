@@ -1,0 +1,132 @@
+import { StyleSheet } from 'react-native';
+import { COLORS } from '../../theme/colors';
+
+export const styles = StyleSheet.create({
+  container: {
+    marginBottom: 10,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginHorizontal: 16,
+    marginBottom: 14,
+  },
+  sectionTitle: {
+    fontSize: 19,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '800',
+    color: COLORS.textDark,
+  },
+  seeAllText: {
+    fontSize: 13.5,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '700',
+    color: '#FF1E6A',
+  },
+  horizontalScroll: {
+    paddingHorizontal: 16,
+  },
+  restaurantCard: {
+    width: 155,
+    marginRight: 14,
+  },
+  imageBox: {
+    width: 155,
+    height: 155,
+    borderRadius: 22,
+    backgroundColor: '#F1F5F9',
+    position: 'relative',
+    overflow: 'hidden',
+    marginBottom: 8,
+  },
+  restaurantImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 22,
+  },
+  badgeContainer: {
+    position: 'absolute',
+    top: 8,
+    left: 8,
+    backgroundColor: '#9EE438',
+    paddingVertical: 3,
+    paddingHorizontal: 7,
+    borderRadius: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  badgeIconCircle: {
+    width: 13,
+    height: 13,
+    borderRadius: 6.5,
+    backgroundColor: '#1C3A27',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 4,
+  },
+  badgePercentSymbol: {
+    fontSize: 8.5,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '900',
+    color: '#9EE438',
+    lineHeight: 11,
+    textAlign: 'center',
+  },
+  badgeText: {
+    fontSize: 10.5,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '800',
+    color: '#0F172A',
+  },
+  restaurantName: {
+    fontSize: 15,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '700',
+    color: '#18181B',
+    marginBottom: 3,
+  },
+  metaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginBottom: 3,
+  },
+  ratingBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingText: {
+    fontSize: 12,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '700',
+    color: '#16A34A',
+    marginLeft: 3,
+  },
+  ratingCountText: {
+    fontSize: 12,
+    fontFamily: 'OpenSans-Regular',
+    color: '#8E8E93',
+    marginLeft: 2,
+  },
+  bulletDot: {
+    fontSize: 12,
+    color: '#8E8E93',
+    marginHorizontal: 4,
+  },
+  timeText: {
+    fontSize: 12,
+    fontFamily: 'OpenSans-Regular',
+    color: '#71717A',
+  },
+  cuisinesText: {
+    fontSize: 12,
+    fontFamily: 'OpenSans-Regular',
+    color: '#8E8E93',
+  },
+});

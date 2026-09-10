@@ -11,6 +11,14 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		F00100010001000100010001 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F00100010001000100010002 /* OpenSans-Light.ttf */; };
+		F00100020001000100010001 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F00100020001000100010002 /* OpenSans-Regular.ttf */; };
+		F00100030001000100010001 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F00100030001000100010002 /* OpenSans-Medium.ttf */; };
+		F00100040001000100010001 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F00100040001000100010002 /* OpenSans-SemiBold.ttf */; };
+		F00100050001000100010001 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F00100050001000100010002 /* OpenSans-Bold.ttf */; };
+		F00100060001000100010001 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F00100060001000100010002 /* OpenSans-ExtraBold.ttf */; };
+		F00100070001000100010001 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F00100070001000100010002 /* OpenSans-Italic.ttf */; };
+		F00100080001000100010001 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F00100080001000100010002 /* OpenSans-BoldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = WebseederOvenly/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = WebseederOvenly/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F00100010001000100010002 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = font; name = OpenSans-Light.ttf; path = WebseederOvenly/Fonts/OpenSans-Light.ttf; sourceTree = "<group>"; };
+		F00100020001000100010002 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = font; name = OpenSans-Regular.ttf; path = WebseederOvenly/Fonts/OpenSans-Regular.ttf; sourceTree = "<group>"; };
+		F00100030001000100010002 /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = font; name = OpenSans-Medium.ttf; path = WebseederOvenly/Fonts/OpenSans-Medium.ttf; sourceTree = "<group>"; };
+		F00100040001000100010002 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = font; name = OpenSans-SemiBold.ttf; path = WebseederOvenly/Fonts/OpenSans-SemiBold.ttf; sourceTree = "<group>"; };
+		F00100050001000100010002 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = font; name = OpenSans-Bold.ttf; path = WebseederOvenly/Fonts/OpenSans-Bold.ttf; sourceTree = "<group>"; };
+		F00100060001000100010002 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = font; name = OpenSans-ExtraBold.ttf; path = WebseederOvenly/Fonts/OpenSans-ExtraBold.ttf; sourceTree = "<group>"; };
+		F00100070001000100010002 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = font; name = OpenSans-Italic.ttf; path = WebseederOvenly/Fonts/OpenSans-Italic.ttf; sourceTree = "<group>"; };
+		F00100080001000100010002 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = font; name = OpenSans-BoldItalic.ttf; path = WebseederOvenly/Fonts/OpenSans-BoldItalic.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +57,14 @@
 		13B07FAE1A68108700A75B9A /* WebseederOvenly */ = {
 			isa = PBXGroup;
 			children = (
+				F00100010001000100010002 /* OpenSans-Light.ttf */,
+				F00100020001000100010002 /* OpenSans-Regular.ttf */,
+				F00100030001000100010002 /* OpenSans-Medium.ttf */,
+				F00100040001000100010002 /* OpenSans-SemiBold.ttf */,
+				F00100050001000100010002 /* OpenSans-Bold.ttf */,
+				F00100060001000100010002 /* OpenSans-ExtraBold.ttf */,
+				F00100070001000100010002 /* OpenSans-Italic.ttf */,
+				F00100080001000100010002 /* OpenSans-BoldItalic.ttf */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,

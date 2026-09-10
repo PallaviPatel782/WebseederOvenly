@@ -1,0 +1,27 @@
+export const IMAGES = {
+  appLogo: require('./appLogo.jpeg'),
+  loginBanner: require('./loginscreenimage.png'),
+  cravingHealthy: require('./craving_healthy.jpg'),
+  cravingLocalGem: require('./craving_local_gem.jpg'),
+  cravingDiscount: require('./craving_discount.jpg'),
+  cravingTopBrands: require('./craving_top_brands.jpg'),
+  helpMascot: require('./help_mascot.jpg'),
+  emptyOrders: require('./empty_orders.jpg'),
+  // Food items:
+  foodSoseuGamja: require('./food_soseu_gamja.jpg'),
+  foodMasalaDosa: require('./food_masala_dosa.jpg'),
+  foodBisiBele: require('./food_bisi_bele.jpg'),
+  mindNorthIndian: require('./mind_north_indian.jpg'),
+  mindSouthIndian: require('./mind_south_indian.jpg'),
+  mindBiryani: require('./mind_biryani.jpg'),
+  mindChinese: require('./mind_chinese.jpg'),
+  knownSaladDays: require('./known_salad_days.jpg'),
+  knownWendysBurger: require('./known_wendys_burger.jpg'),
+  knownTheobromaCake: require('./known_theobroma_cake.jpg'),
+  knownBiryaniBlues: require('./known_biryani_blues.jpg'),
+  knownSmokeHouse: require('./known_smoke_house.jpg'),
+  banner3: require('./banner3.png'),
+  banner4: require('./banner4.png'),
+  beijingBites: require('./beijing_bites.jpg'),
+};
+

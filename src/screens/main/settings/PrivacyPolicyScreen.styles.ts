@@ -1,0 +1,119 @@
+import { StyleSheet } from 'react-native';
+import { COLORS } from '../../../theme/colors';
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.screenBgLight,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    backgroundColor: COLORS.white,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F1F5F9',
+  },
+  backBtn: {
+    padding: 6,
+    marginRight: 12,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '700',
+    color: COLORS.textDark,
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  topCard: {
+    backgroundColor: '#EFF6FF',
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#DBEAFE',
+  },
+  topCardTitle: {
+    fontSize: 18,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '800',
+    color: COLORS.headerBlue,
+    marginBottom: 4,
+  },
+  lastUpdated: {
+    fontSize: 12,
+    fontFamily: 'OpenSans-Medium',
+    color: COLORS.textMuted,
+  },
+  sectionCard: {
+    backgroundColor: COLORS.white,
+    borderRadius: 16,
+    padding: 18,
+    marginBottom: 14,
+    borderWidth: 1,
+    borderColor: '#EFEFEF',
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.03,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  sectionNumberTitle: {
+    fontSize: 15,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '700',
+    color: COLORS.textDark,
+    marginBottom: 8,
+  },
+  sectionBody: {
+    fontSize: 13.5,
+    fontFamily: 'OpenSans-Regular',
+    color: COLORS.textSub,
+    lineHeight: 21,
+  },
+  bulletItem: {
+    flexDirection: 'row',
+    marginTop: 6,
+    paddingLeft: 4,
+  },
+  bulletDot: {
+    fontSize: 14,
+    color: COLORS.headerBlue,
+    marginRight: 8,
+    lineHeight: 20,
+  },
+  bulletText: {
+    flex: 1,
+    fontSize: 13,
+    fontFamily: 'OpenSans-Regular',
+    color: COLORS.textSub,
+    lineHeight: 20,
+  },
+  contactBox: {
+    backgroundColor: COLORS.white,
+    borderRadius: 16,
+    padding: 18,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    alignItems: 'center',
+  },
+  contactTitle: {
+    fontSize: 15,
+    fontFamily: 'OpenSans-Bold',
+    fontWeight: '700',
+    color: COLORS.textDark,
+    marginBottom: 4,
+  },
+  contactSub: {
+    fontSize: 13,
+    fontFamily: 'OpenSans-Regular',
+    color: COLORS.headerBlue,
+    textAlign: "center"
+  },
+});
