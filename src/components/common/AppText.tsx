@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text as RNText, TextProps as RNTextProps, StyleSheet, TextStyle, Platform } from 'react-native';
+import { Text as RNText, TextProps as RNTextProps, StyleSheet, TextStyle, StyleProp, Platform } from 'react-native';
 import { typography, getFontFamily, FONT_FAMILY } from '../../theme/typography';
 
 export interface AppTextProps extends RNTextProps {
   variant?: keyof typeof typography;
-  style?: TextStyle | TextStyle[];
+  style?: StyleProp<TextStyle>;
 }
 
 export const AppText: React.FC<AppTextProps> = ({ variant = 'body1', style, children, ...props }) => {

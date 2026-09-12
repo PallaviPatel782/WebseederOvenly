@@ -15,6 +15,8 @@ interface SearchBarProps {
   value?: string;
   onChangeText?: (text: string) => void;
   onClear?: () => void;
+  onPress?: () => void;
+  editable?: boolean;
   containerStyle?: ViewStyle;
   inputStyle?: TextStyle;
   autoFocus?: boolean;
@@ -25,6 +27,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   value = '',
   onChangeText,
   onClear,
+  onPress,
+  editable = true,
   containerStyle,
   inputStyle,
   autoFocus = false,
@@ -38,7 +42,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <View style={[styles.container, containerStyle]}>
+    <TouchableOpacity
+      activeOpacity={onPress ? 0.9 : 1}
+      onPress={onPress}
+      style={[styles.container, containerStyle]}
+      disabled={!onPress}
+    >
       <SearchIcon size={18} color={COLORS.textPlaceholder} />
       <TextInput
         style={[styles.input, inputStyle]}
@@ -49,13 +58,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         autoFocus={autoFocus}
         autoCapitalize="none"
         autoCorrect={false}
+        editable={editable && !onPress}
+        pointerEvents={onPress ? 'none' : 'auto'}
       />
       {value ? (
         <TouchableOpacity onPress={handleClear} activeOpacity={0.7} style={styles.clearBtn}>
           <XIcon size={16} color={COLORS.textMuted} />
         </TouchableOpacity>
       ) : null}
-    </View>
+    </TouchableOpacity>
   );
 };
 

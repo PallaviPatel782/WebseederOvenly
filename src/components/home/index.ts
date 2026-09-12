@@ -5,5 +5,7 @@ export * from './KnownAndLovedSection';
 export * from './BannerSlider';
 export * from './AllRestaurantsFilterBar';
 export * from './AllRestaurantsSection';
+export * from './FoodShowcaseModal';
+
 
 

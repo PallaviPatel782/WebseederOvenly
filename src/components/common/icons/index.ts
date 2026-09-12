@@ -18,5 +18,16 @@ export * from './TrashIcon';
 export * from './SmartphoneIcon';
 export * from './XIcon';
 export * from './LockIcon';
+export * from './BriefcaseIcon';
+export * from './DoorIcon';
+export * from './PhoneOffIcon';
+export * from './ShieldUserIcon';
+export * from './NavigationIcon';
+export * from './ClockIcon';
+export * from './TrendingUpIcon';
+export * from './BookIcon';
+export * from './ShareIcon';
+export * from './ContactBookIcon';
+export * from './BellOffIcon';
 
 

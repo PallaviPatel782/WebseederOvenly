@@ -11,6 +11,14 @@ export const IMAGES = {
   foodSoseuGamja: require('./food_soseu_gamja.jpg'),
   foodMasalaDosa: require('./food_masala_dosa.jpg'),
   foodBisiBele: require('./food_bisi_bele.jpg'),
+  foodChickenPopcorn: require('./food_chicken_popcorn.jpg'),
+  foodChickenRoll: require('./food_chicken_roll.jpg'),
+  foodIdliVada: require('./food_idli_vada.jpg'),
+  foodColdCoffee: require('./food_cold_coffee.jpg'),
+  foodOrangeJuice: require('./food_orange_juice.jpg'),
+  foodWatermelonJuice: require('./food_watermelon_juice.jpg'),
+  foodSouthIndianThali: require('./food_south_indian_thali.jpg'),
+  foodMangoShake: require('./food_mango_shake.jpg'),
   mindNorthIndian: require('./mind_north_indian.jpg'),
   mindSouthIndian: require('./mind_south_indian.jpg'),
   mindBiryani: require('./mind_biryani.jpg'),
@@ -24,4 +32,3 @@ export const IMAGES = {
   banner4: require('./banner4.png'),
   beijingBites: require('./beijing_bites.jpg'),
 };
-

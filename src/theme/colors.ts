@@ -39,8 +39,47 @@ export const COLORS = {
   error: '#DC2626',
   warning: '#F59E0B',
   badgeGreen: '#16A34A',
+  badgeGreenBg: '#DCFCE7',
+  badgeGreenText: '#14532D',
+  badgeGreenDark: '#166534',
   ratingGreen: '#16A34A',
   priceHighlight: '#E60067',
+
+  // Semantic UI tokens:
+  filterPillActiveBg: '#FFF0F5',
+  borderFilter: '#E2E8F0',
+  textSlateDark: '#0F172A',
+  textSlateSub: '#334155',
+  textSlateMuted: '#64748B',
+  textSlateLight: '#94A3B8',
+  textSlateIcon: '#475569',
+
+  yellowBadgeBg: '#FEF08A',
+  badgeGreenSoftBg: '#F0FDF4',
+  badgeGreenSoftBorder: '#DCFCE7',
+  knownLovedGreen: '#9EE438',
+  knownLovedDarkGreen: '#1C3A27',
+  knownLovedOrange: '#FF9500',
+  breakfastSoftBg: '#FFF8F6',
+  breakfastSoftBorder: '#FFEFEA',
+  dividerLight: '#F1F5F9',
+  darkMenuBg: '#0F172A',
+
+  // Category Banner Themes:
+  bannerGreen: '#166534',
+  bannerGreenLight: '#15803D',
+  bannerMagenta: '#9D174D',
+  bannerMagentaLight: '#BE185D',
+  bannerOrange: '#C2410C',
+  bannerOrangeLight: '#EA580C',
+  bannerTeal: '#0F766E',
+  bannerTealLight: '#0D9488',
+  bannerBlue: '#1E3A8A',
+  bannerBlueLight: '#2563EB',
+
+  modalBackdrop: 'rgba(0, 0, 0, 0.25)',
+  overlayWhite: 'rgba(255, 255, 255, 0.88)',
+  radioUnselectedBorder: '#CBD5E1',
 };
 
 export const palette = {

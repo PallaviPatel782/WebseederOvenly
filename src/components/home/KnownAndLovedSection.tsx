@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { AppText } from '../common/AppText';
-import { StarIcon } from '../common/icons';
+import { StarIcon, ZapIcon } from '../common/icons';
 import { KNOWN_AND_LOVED_DATA, RestaurantItem } from '../../constants/homeData';
 import { styles } from './KnownAndLovedSection.styles';
 
@@ -9,6 +9,7 @@ interface KnownAndLovedSectionProps {
   title?: string;
   data?: RestaurantItem[];
   onSelectRestaurant?: (item: RestaurantItem) => void;
+  onRestaurantPress?: (item: RestaurantItem) => void;
   onSeeAll?: () => void;
 }
 
@@ -16,8 +17,16 @@ export const KnownAndLovedSection: React.FC<KnownAndLovedSectionProps> = ({
   title = 'Known & Loved',
   data = KNOWN_AND_LOVED_DATA,
   onSelectRestaurant,
+  onRestaurantPress,
   onSeeAll,
 }) => {
+  const handlePress = (item: RestaurantItem) => {
+    if (onRestaurantPress) {
+      onRestaurantPress(item);
+    } else if (onSelectRestaurant) {
+      onSelectRestaurant(item);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -37,7 +46,7 @@ export const KnownAndLovedSection: React.FC<KnownAndLovedSectionProps> = ({
             key={item.id}
             style={styles.restaurantCard}
             activeOpacity={0.85}
-            onPress={() => onSelectRestaurant?.(item)}
+            onPress={() => handlePress(item)}
           >
             <View style={styles.imageBox}>
               <Image source={item.image} style={styles.restaurantImage} resizeMode="cover" />
@@ -65,7 +74,10 @@ export const KnownAndLovedSection: React.FC<KnownAndLovedSectionProps> = ({
               </View>
 
               <AppText style={styles.bulletDot}>•</AppText>
-              <AppText style={styles.timeText}>⚡ {item.time}</AppText>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <ZapIcon size={11} color="#F59E0B" fill="#F59E0B" style={{ marginRight: 2 }} />
+                <AppText style={styles.timeText}>{item.time}</AppText>
+              </View>
             </View>
 
             {item.cuisines ? (

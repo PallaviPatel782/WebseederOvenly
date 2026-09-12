@@ -29,6 +29,7 @@ tmp/
 android/app/build/
 android/build/
 android/.gradle/
+android/app/.cxx/
 android/.idea/
 android/app/debug.keystore
 android/app/release.keystore

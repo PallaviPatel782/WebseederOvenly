@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     height: SLIDER_HEIGHT,
     borderRadius: 18,
     overflow: 'hidden',
-    backgroundColor: '#F1F5F9',
+    backgroundColor: COLORS.dividerLight,
     elevation: 3,
     shadowColor: COLORS.black,
     shadowOffset: { width: 0, height: 2 },
@@ -45,10 +45,10 @@ export const styles = StyleSheet.create({
   },
   activeDot: {
     width: 18,
-    backgroundColor: COLORS.headerBlueDark,
+    backgroundColor: COLORS.brandPink,
   },
   inactiveDot: {
     width: 6,
-    backgroundColor: '#CBD5E1',
+    backgroundColor: COLORS.radioUnselectedBorder,
   },
 });

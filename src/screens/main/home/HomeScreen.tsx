@@ -6,6 +6,7 @@ import {
   Switch,
   Platform,
   StatusBar,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppText } from '../../../components/common/AppText';
@@ -21,10 +22,15 @@ import {
   SearchBar,
   AllRestaurantsFilterBar,
   AllRestaurantsSection,
+  FoodShowcaseModal,
 } from '../../../components';
 import {
+  BREAKFAST_UNDER_DATA,
+  KNOWN_AND_LOVED_DATA,
   GREAT_FOOD_BETTER_PRICES_DATA,
   ALL_RESTAURANTS_DATA,
+  filterAndSortRestaurants,
+  FoodItem,
 } from '../../../constants/homeData';
 import { UserProfile } from '../../../navigation/RootNavigator';
 import { styles } from './HomeScreen.styles';
@@ -32,17 +38,30 @@ import { styles } from './HomeScreen.styles';
 interface HomeScreenProps {
   userProfile?: UserProfile;
   onNavigateToProfile?: () => void;
+  onNavigateToAddresses?: () => void;
+  onNavigateToSearch?: () => void;
+  onNavigateToCategory?: (categoryItem: any) => void;
+  onNavigateToRestaurant?: (restaurantItem: any) => void;
+  currentAddress?: string;
   onNavigateBack?: () => void;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
   userProfile,
   onNavigateToProfile,
+  onNavigateToAddresses,
+  onNavigateToSearch,
+  onNavigateToCategory,
+  onNavigateToRestaurant,
+  currentAddress,
 }) => {
   const [isVegOnly, setIsVegOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('all');
+  const [sortOption, setSortOption] = useState<'relevancy' | 'rating' | 'distance' | 'price_low'>('relevancy');
+  const [isSortModalOpen, setIsSortModalOpen] = useState(false);
   const [filterBarY, setFilterBarY] = useState(800);
+  const [selectedShowcaseFood, setSelectedShowcaseFood] = useState<FoodItem | null>(null);
 
   const insets = useSafeAreaInsets();
   const scrollY = useRef(new Animated.Value(0)).current;
@@ -67,6 +86,40 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     outputRange: [0, 1],
     extrapolate: 'clamp',
   });
+
+  // Filter food items based on VEG toggle state
+  const filteredBreakfastData = BREAKFAST_UNDER_DATA.filter(
+    (item) => !isVegOnly || item.isVeg
+  );
+
+  const filteredKnownData = KNOWN_AND_LOVED_DATA.filter(
+    (item) => !isVegOnly || item.isVeg
+  );
+
+  const filteredGreatData = GREAT_FOOD_BETTER_PRICES_DATA.filter(
+    (item) => !isVegOnly || item.isVeg
+  );
+
+  // Filter and sort ALL_RESTAURANTS_DATA using active filter and sort options
+  const filteredAllRestaurantsData = filterAndSortRestaurants(
+    ALL_RESTAURANTS_DATA,
+    isVegOnly,
+    selectedFilter,
+    sortOption
+  );
+
+  const getSortLabel = () => {
+    switch (sortOption) {
+      case 'rating':
+        return 'Rating';
+      case 'distance':
+        return 'Distance';
+      case 'price_low':
+        return 'Price';
+      default:
+        return 'Sort by';
+    }
+  };
 
   return (
     <ScreenWrapper backgroundColor={COLORS.headerBlue} barStyle="light-content" unsafeTop unsafeBottom>
@@ -96,13 +149,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         >
           <View style={[styles.locationSection, { height: locationHeight }]}>
             <View style={styles.topRow}>
-              <TouchableOpacity style={styles.locationLeft} activeOpacity={0.8}>
+              <TouchableOpacity
+                style={styles.locationLeft}
+                activeOpacity={0.8}
+                onPress={onNavigateToAddresses}
+              >
                 <View style={styles.locationTitleRow}>
                   <AppText style={styles.locationTitle}>Current location</AppText>
                   <ChevronDownIcon size={18} color={COLORS.white} />
                 </View>
                 <AppText style={styles.locationSub} numberOfLines={1}>
-                  Bangalore, Karnataka, India
+                  {currentAddress || 'Bangalore, Karnataka, India'}
                 </AppText>
               </TouchableOpacity>
 
@@ -134,6 +191,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               placeholder="Search"
               value={searchQuery}
               onChangeText={setSearchQuery}
+              onPress={onNavigateToSearch}
             />
           </View>
         </Animated.View>
@@ -151,6 +209,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <AllRestaurantsFilterBar
             selectedFilter={selectedFilter}
             onSelectFilter={setSelectedFilter}
+            onOpenSortModal={() => setIsSortModalOpen(!isSortModalOpen)}
+            sortLabel={getSortLabel()}
           />
         </Animated.View>
 
@@ -168,17 +228,36 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <View>
             <BannerSlider />
 
-            <PickYourCravingSection />
+            <PickYourCravingSection
+              onSelectCraving={(item) => onNavigateToCategory?.(item)}
+            />
 
-            <BreakfastUnderSection />
+            <BreakfastUnderSection
+              data={filteredBreakfastData}
+              onCardPress={(item) => setSelectedShowcaseFood(item)}
+              onSeeAll={() =>
+                onNavigateToCategory?.({
+                  id: 'breakfast_under_99',
+                  title: 'Bestseller',
+                  priceTag: 'under ₹99',
+                })
+              }
+            />
 
-            <WhatsOnYourMindSection />
+            <WhatsOnYourMindSection
+              onSelectCategory={(item) => onNavigateToCategory?.(item)}
+            />
 
-            <KnownAndLovedSection title="Known & Loved" />
+            <KnownAndLovedSection
+              title="Known & Loved"
+              data={filteredKnownData}
+              onRestaurantPress={onNavigateToRestaurant}
+            />
 
             <KnownAndLovedSection
               title="Great Food, Better Prices"
-              data={GREAT_FOOD_BETTER_PRICES_DATA}
+              data={filteredGreatData}
+              onRestaurantPress={onNavigateToRestaurant}
             />
           </View>
 
@@ -186,14 +265,122 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <AllRestaurantsFilterBar
               selectedFilter={selectedFilter}
               onSelectFilter={setSelectedFilter}
+              onOpenSortModal={() => setIsSortModalOpen(!isSortModalOpen)}
+              sortLabel={getSortLabel()}
             />
           </View>
 
-          <AllRestaurantsSection data={ALL_RESTAURANTS_DATA} />
+          <AllRestaurantsSection
+            data={filteredAllRestaurantsData}
+            onRestaurantPress={onNavigateToRestaurant}
+          />
         </Animated.ScrollView>
+
+        {/* Sort Modal Dropdown */}
+        {isSortModalOpen ? (
+          <>
+            <TouchableWithoutFeedback onPress={() => setIsSortModalOpen(false)}>
+              <View
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundColor: COLORS.modalBackdrop,
+                  zIndex: 200,
+                }}
+              />
+            </TouchableWithoutFeedback>
+
+            <View
+              style={{
+                position: 'absolute',
+                top: topInset + searchHeight + 50,
+                left: 16,
+                width: 220,
+                backgroundColor: COLORS.white,
+                borderRadius: 16,
+                paddingVertical: 10,
+                paddingHorizontal: 14,
+                elevation: 8,
+                shadowColor: COLORS.black,
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.15,
+                shadowRadius: 10,
+                zIndex: 210,
+                borderWidth: 1,
+                borderColor: COLORS.borderFilter,
+              }}
+            >
+              {[
+                { key: 'relevancy', label: 'Relevancy' },
+                { key: 'rating', label: 'Rating (High to Low)' },
+                { key: 'distance', label: 'Distance' },
+                { key: 'price_low', label: 'Price (Low to High)' },
+              ].map((opt) => (
+                <TouchableOpacity
+                  key={opt.key}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    paddingVertical: 10,
+                  }}
+                  activeOpacity={0.7}
+                  onPress={() => {
+                    setSortOption(opt.key as any);
+                    setIsSortModalOpen(false);
+                  }}
+                >
+                  <View
+                    style={{
+                      width: 18,
+                      height: 18,
+                      borderRadius: 9,
+                      borderWidth: 2,
+                      borderColor: sortOption === opt.key ? COLORS.brandPink : COLORS.radioUnselectedBorder,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      marginRight: 10,
+                    }}
+                  >
+                    {sortOption === opt.key ? (
+                      <View
+                        style={{
+                          width: 10,
+                          height: 10,
+                          borderRadius: 5,
+                          backgroundColor: COLORS.brandPink,
+                        }}
+                      />
+                    ) : null}
+                  </View>
+                  <AppText
+                    style={{
+                      fontSize: 13,
+                      fontFamily: 'OpenSans-Bold',
+                      fontWeight: sortOption === opt.key ? '800' : '600',
+                      color: sortOption === opt.key ? COLORS.textSlateDark : COLORS.textSlateSub,
+                    }}
+                  >
+                    {opt.label}
+                  </AppText>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </>
+        ) : null}
+
+        <FoodShowcaseModal
+          item={selectedShowcaseFood}
+          visible={!!selectedShowcaseFood}
+          onClose={() => setSelectedShowcaseFood(null)}
+          onViewMenuPress={(restaurantName) => {
+            setSelectedShowcaseFood(null);
+            onNavigateToRestaurant?.({ name: restaurantName });
+          }}
+        />
       </View>
     </ScreenWrapper>
   );
 };
-
-

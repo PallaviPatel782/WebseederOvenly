@@ -7,6 +7,7 @@ import { SearchBar } from '../../../components/common/SearchBar';
 import {
   ArrowLeftIcon,
   HomeIcon,
+  BriefcaseIcon,
   EditIcon,
   TrashIcon,
   MapPinIcon,
@@ -14,12 +15,16 @@ import {
 import { COLORS } from '../../../theme/colors';
 import { styles } from './AddressesScreen.styles';
 
-interface AddressItem {
+export interface AddressItem {
   id: string;
   title: string;
   isCurrentLocation?: boolean;
   address: string;
   iconType?: 'home' | 'work' | 'other';
+  houseNo?: string;
+  roadArea?: string;
+  landmark?: string;
+  deliveryInstructions?: string[];
 }
 
 const INITIAL_ADDRESSES: AddressItem[] = [
@@ -29,21 +34,33 @@ const INITIAL_ADDRESSES: AddressItem[] = [
     isCurrentLocation: true,
     address: 'Abc1 - Bangalore, Karnataka, India',
     iconType: 'home',
+    houseNo: 'Abc1',
+    roadArea: 'Bangalore, Karnataka, India',
   },
 ];
 
 interface AddressesScreenProps {
   onBack?: () => void;
   onAddNewAddress?: () => void;
+  onEditAddress?: (item: AddressItem) => void;
+  addresses?: AddressItem[];
+  onSelectAddress?: (item: AddressItem) => void;
+  onDeleteAddress?: (id: string) => void;
 }
 
 export const AddressesScreen: React.FC<AddressesScreenProps> = ({
   onBack,
   onAddNewAddress,
+  onEditAddress,
+  addresses: propAddresses,
+  onSelectAddress,
+  onDeleteAddress,
 }) => {
   const insets = useSafeAreaInsets();
   const [searchQuery, setSearchQuery] = useState('');
-  const [addresses, setAddresses] = useState<AddressItem[]>(INITIAL_ADDRESSES);
+  const [localAddresses, setLocalAddresses] = useState<AddressItem[]>(INITIAL_ADDRESSES);
+
+  const addresses = propAddresses || localAddresses;
 
   const filteredAddresses = addresses.filter(
     (item) =>
@@ -60,14 +77,24 @@ export const AddressesScreen: React.FC<AddressesScreenProps> = ({
         {
           text: 'Delete',
           style: 'destructive',
-          onPress: () => setAddresses((prev) => prev.filter((a) => a.id !== id)),
+          onPress: () => {
+            if (onDeleteAddress) {
+              onDeleteAddress(id);
+            } else {
+              setLocalAddresses((prev) => prev.filter((a) => a.id !== id));
+            }
+          },
         },
       ]
     );
   };
 
   const handleEditAddress = (item: AddressItem) => {
-    Alert.alert('Edit Address', `Editing address for ${item.title}`);
+    if (onEditAddress) {
+      onEditAddress(item);
+    } else {
+      Alert.alert('Edit Address', `Editing address for ${item.title}`);
+    }
   };
 
   return (
@@ -92,12 +119,19 @@ export const AddressesScreen: React.FC<AddressesScreenProps> = ({
           <ScrollView showsVerticalScrollIndicator={false}>
             {filteredAddresses.length > 0 ? (
               filteredAddresses.map((item) => (
-                <View key={item.id} style={styles.addressCard}>
+                <TouchableOpacity
+                  key={item.id}
+                  style={styles.addressCard}
+                  activeOpacity={0.9}
+                  onPress={() => onSelectAddress && onSelectAddress(item)}
+                >
                   <View style={styles.cardHeader}>
                     <View style={styles.cardHeaderLeft}>
                       <View style={styles.homeIconBox}>
                         {item.iconType === 'home' ? (
                           <HomeIcon size={18} color={COLORS.textDark} />
+                        ) : item.iconType === 'work' ? (
+                          <BriefcaseIcon size={18} color={COLORS.textDark} />
                         ) : (
                           <MapPinIcon size={18} color={COLORS.textDark} />
                         )}
@@ -130,7 +164,7 @@ export const AddressesScreen: React.FC<AddressesScreenProps> = ({
 
                   <View style={styles.divider} />
                   <AppText style={styles.addressBody}>{item.address}</AppText>
-                </View>
+                </TouchableOpacity>
               ))
             ) : (
               <View style={styles.emptyContainer}>
